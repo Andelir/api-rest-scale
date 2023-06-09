@@ -6,8 +6,14 @@ module.exports = {
         res.status(200);
         res.json(people);
     },
+    getPersonById: async (req, res) => {
+        const { personId } = req.params;
+        const person = await personService.getPersonById(personId);
+        res.status(200);
+        res.json(person);
+    },
     updatePerson: async (req, res) => {
-        const {personId} = req.params;
+        const { personId } = req.params;
         const resp = await personService.updatePersonById(personId, req.body);
         const {status, message} = resp
         res.status(status);
@@ -17,16 +23,17 @@ module.exports = {
     },
     createPerson: async (req, res) => {
         const resp = await personService.createPerson(req.body);
-        const {status, message} = resp
+        const {status, message, person} = resp;
         res.status(status);
         res.json({
-           message
+           message,
+           person
         });
     },
     deletePerson: async (req, res) => {
         const { personId } = req.params;
         const resp = await personService.deletePersonById(personId);
-        const {status, message} = resp
+        const {status, message} = resp;
         res.status(status);
         res.json({
             message

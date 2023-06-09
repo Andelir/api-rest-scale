@@ -1,7 +1,7 @@
 'use strict';
-const {Model} = require('sequelize');
-const sequelize = require('../database/database')
-const {DataTypes} = require('sequelize')
+const { Model } = require('sequelize');
+const sequelize = require('../database/database');
+const { DataTypes } = require('sequelize');
 
 class Person extends Model {
     /**
